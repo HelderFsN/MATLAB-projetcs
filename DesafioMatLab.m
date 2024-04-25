@@ -10,6 +10,7 @@ expoenteA = 0;
 coeficienteB = 0;
 encontradoNaLista = 0;
 diametro = 0;
+material = 0;
 
 %Escolha do diâmetro
 while encontradoNaLista ~= 1 || limiteDiametro == 0
@@ -57,10 +58,9 @@ while encontradoNaLista ~= 1 || limiteDiametro == 0
                 otherwise
                     disp('Digite um número entre 1 e 5 para ser compatível as opções')
             end
-            if limiteDiametro == 0
+            if limiteDiametro == 0 & material ~= 0
                 disp('o valor não se enquadra na faixa de diâmetro. Digite outro valor!')
             end
-
         catch
             disp('Error! Não foi digitado um número')
         end
