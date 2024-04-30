@@ -13,7 +13,8 @@ diametro = 0;
 material = 0;
 
 %Escolha do diâmetro
-while encontradoNaLista ~= 1 || limiteDiametro == 0
+while ~encontradoNaLista || ~limiteDiametro
+    encontradoNaLista = 0;
     diametro = input('Qual o diâmetro da mola? ');
     for col = 1:2
         for lin = 1:length(dadosDiametros)
@@ -27,9 +28,9 @@ while encontradoNaLista ~= 1 || limiteDiametro == 0
         try
             %Escolha do material
             fprintf('Menu: \nEscolha o material aplicado à mola \n1-Corda de Piano       3-Aço encruado     5-Aço-liga Cr-Si\n2-Aço revenido em óleo 4-Aço-liga Cr-Va\n');
-            opcaoMaterial = input('Opção: ');
-    
-            switch opcaoMaterial 
+            opcaoMaterial = input('Opção: ','s');
+            opcaoMaterial = str2num(opcaoMaterial);
+            switch opcaoMaterial
                 case 1 %Corda de Piano
                     material = 'Corda de Piano';
                     limiteDiametro = diametro >= 0.25 & diametro <= 6.5;
@@ -58,7 +59,7 @@ while encontradoNaLista ~= 1 || limiteDiametro == 0
                 otherwise
                     disp('Digite um número entre 1 e 5 para ser compatível as opções')
             end
-            if limiteDiametro == 0 & material ~= 0
+            if ~limiteDiametro & material ~= 0
                 disp('o valor não se enquadra na faixa de diâmetro. Digite outro valor!')
             end
         catch
