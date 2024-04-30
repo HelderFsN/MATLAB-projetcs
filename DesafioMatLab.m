@@ -14,8 +14,9 @@ material = 0;
 
 %Escolha do diâmetro
 while ~encontradoNaLista || ~limiteDiametro
-    encontradoNaLista = 0;
-    diametro = input('Qual o diâmetro da mola? ');
+    if ~diametro || ~encontradoNaLista || ~limiteDiametro & isstring(material)
+        diametro = input('Qual o diâmetro da mola? ');
+    end
     for col = 1:2
         for lin = 1:length(dadosDiametros)
             if diametro == dadosDiametros(lin,col)
@@ -60,7 +61,11 @@ while ~encontradoNaLista || ~limiteDiametro
                     disp('Digite um número entre 1 e 5 para ser compatível as opções')
             end
             if ~limiteDiametro & material ~= 0
-                disp('o valor não se enquadra na faixa de diâmetro. Digite outro valor!')
+                disp('o valor não se enquadra na faixa de diâmetro. Digite outro valor!');
+                opcao = input('Gostaria de trocar o diâmetro da mola? sim(s) ou aperte enter para continuar  ','s');
+                if(opcao == 's')
+                    diametro = 0;
+                end
             end
         catch
             disp('Error! Não foi digitado um número')
@@ -72,4 +77,4 @@ while ~encontradoNaLista || ~limiteDiametro
 end
 
 resistenciaLimiteT = coeficienteB*(diametro^expoenteA);
-fprintf('A resistência limite à tração para arames de molas feito com o material %s e possuindo %.2f mm de diâmetro é\n%.2f MPA',material,diametro,resistenciaLimiteT)
+fprintf('A resistência limite à tração para arames de molas feito com o material %s e possuindo %.2f mm de diâmetro\n----->[%.2f MPA]\n',material,diametro,resistenciaLimiteT)
