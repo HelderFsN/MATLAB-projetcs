@@ -29,8 +29,8 @@ while ~encontradoNaLista || ~limiteDiametro
         try
             %Escolha do material
             fprintf('Menu: \nEscolha o material aplicado à mola \n1-Corda de Piano       3-Aço encruado     5-Aço-liga Cr-Si\n2-Aço revenido em óleo 4-Aço-liga Cr-Va\n');
-            opcaoMaterial = input('Opção: ','s');
-            opcaoMaterial = str2num(opcaoMaterial);
+            opcaoMaterial = input('Opção: ');
+            %opcaoMaterial = str2num(opcaoMaterial);
             switch opcaoMaterial
                 case 1 %Corda de Piano
                     material = 'Corda de Piano';
@@ -59,15 +59,17 @@ while ~encontradoNaLista || ~limiteDiametro
                     coeficienteB = 2059.2;
                 otherwise
                     disp('Digite um número entre 1 e 5 para ser compatível as opções')
+                    material = 0;
             end
             if ~limiteDiametro & material ~= 0
-                disp('o valor não se enquadra na faixa de diâmetro. Digite outro valor!');
+                disp('o valor não se enquadra na faixa de diâmetro. Escolha uma opção que se enquadre nos materias!');
                 opcao = input('Gostaria de trocar o diâmetro da mola? sim(s) ou aperte enter para continuar  ','s');
                 if(opcao == 's')
                     diametro = 0;
                 end
             end
-        catch
+        catch e
+            disp(e)
             disp('Error! Não foi digitado um número')
         end
     else

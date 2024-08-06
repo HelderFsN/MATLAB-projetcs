@@ -1,0 +1,17 @@
+clear; clc;
+syms x y(x)
+
+y(x) = x.^2;
+dy_dx = diff(y(x),x);
+fplot(y(x),[-20,20])
+hold on 
+x0 = 5;
+y0 = y(x0);
+D(x0) = subs(dy_dx,x,x0)
+y = D(x0)*(x-x0)+y0
+fplot(y,[-20,20])
+hold off
+grid
+
+
+
